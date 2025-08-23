@@ -45,6 +45,10 @@ function App() {
 }
 ```
 
+## Demo
+
+Open `demo.html` in your browser to see the components in action with live theme switching and Konami code functionality.
+
 ## Components
 
 ### ThemeProvider
@@ -155,6 +159,28 @@ function MyComponent() {
     </div>
   );
 }
+```
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Build the package
+npm run build
+
+# Watch mode for development
+npm run dev
+
+# Type checking
+npm run type-check
+
+# Linting
+npm run lint
+
+# Testing
+npm run test
 ```
 
 ## Styling
