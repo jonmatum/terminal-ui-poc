@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-primary font-mono;
+  }
+}
+
+@layer components {
+  .terminal-scanlines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      transparent 50%, 
+      rgba(0, 255, 65, 0.03) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    animation: scan-line 0.1s linear infinite;
+  }
+  
+  .terminal-glow {
+    filter: drop-shadow(0 0 5px currentColor);
+  }
+  
+  .terminal-glow-strong {
+    filter: drop-shadow(0 0 10px currentColor) drop-shadow(0 0 20px currentColor);
+  }
+}
+
+/* Theme-specific styles */
+.theme-matrix {
+  --color-primary: #00ff41;
+  --color-secondary: #008f11;
+  --color-accent: #00ff41;
+  --color-background: #000000;
+  --color-surface: #0a0a0a;
+  --color-border: #00ff41;
+  --color-text-primary: #00ff41;
+  --color-text-secondary: #008f11;
+  --color-text-muted: #004d0a;
+  --color-glow: #00ff41;
+  --color-shadow: rgba(0, 255, 65, 0.3);
+}
+
+.theme-tron {
+  --color-primary: #00ffff;
+  --color-secondary: #0080ff;
+  --color-accent: #ff8000;
+  --color-background: #0a0a0a;
+  --color-surface: #111111;
+  --color-border: #00ffff;
+  --color-text-primary: #00ffff;
+  --color-text-secondary: #0080ff;
+  --color-text-muted: #004d66;
+  --color-glow: #00ffff;
+  --color-shadow: rgba(0, 255, 255, 0.3);
+}
