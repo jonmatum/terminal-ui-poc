@@ -52,23 +52,74 @@ function App() {
 }
 ```
 
-## Demo Development
+## Development
 
-The demo application showcases all components and features:
+### Package Development
 
 ```bash
-# Start demo development server
+# Install dependencies
+npm install
+
+# Build the package (fast with tsup + esbuild)
+npm run build
+
+# Watch mode for package development
+npm run dev
+
+# Type checking
+npm run type-check
+
+# Linting and formatting
+npm run lint
+npm run format
+
+# Testing
+npm run test
+npm run test:ui
+
+# Full quality check
+npm run quality
+```
+
+### Demo Development
+
+The demo application showcases all components and features. The package is automatically built before running any demo commands:
+
+```bash
+# Start demo development (builds package first)
 npm run demo:dev
 
-# Build demo for production
+# Concurrent development (package watch + demo)
+npm run dev:demo
+
+# Build demo for production (builds package first)
 npm run demo:build
 
-# Preview demo build
+# Preview demo build (builds package first)
 npm run demo:preview
 
-# Deploy demo to GitHub Pages
+# Deploy demo to GitHub Pages (builds package first)
 npm run demo:deploy
 ```
+
+### Development Workflow
+
+**For Package Development:**
+```bash
+npm run dev          # Watch mode for package changes
+```
+
+**For Demo Development:**
+```bash
+npm run demo:dev     # Builds package once, then starts demo
+```
+
+**For Concurrent Development:**
+```bash
+npm run dev:demo     # Package watch + demo server simultaneously
+```
+
+The demo automatically uses the latest built version of the package, ensuring you always see your changes reflected.
 
 ## Components
 
@@ -180,31 +231,6 @@ function MyComponent() {
     </div>
   );
 }
-```
-
-## Development
-
-```bash
-# Install dependencies
-npm install
-
-# Build the package (fast with tsup + esbuild)
-npm run build
-
-# Watch mode for development
-npm run dev
-
-# Type checking
-npm run type-check
-
-# Linting
-npm run lint
-
-# Testing
-npm run test
-
-# Full quality check
-npm run quality
 ```
 
 ## Build System

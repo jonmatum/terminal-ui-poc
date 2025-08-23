@@ -6,8 +6,11 @@
   "type": "module",
   "homepage": "https://jonmatum.github.io/terminal-ui",
   "scripts": {
+    "prebuild": "npm run build:package",
+    "predev": "npm run build:package",
+    "prepreview": "npm run build:package",
     "dev": "vite",
-    "build": "npm run build:package && tsc && vite build",
+    "build": "tsc && vite build",
     "build:package": "cd .. && npm run build",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
