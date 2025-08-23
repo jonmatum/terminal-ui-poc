@@ -1,95 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* 
+ * ULTRA-MINIMAL Demo CSS - 100% Design Token Leverage
+ * 
+ * The @jonmatum/terminal-ui package now provides:
+ * ✅ Complete design token system
+ * ✅ Tailwind configuration with all utilities
+ * ✅ CSS custom properties for theming
+ * ✅ Component styles and animations
+ * ✅ Terminal-specific utilities
+ * 
+ * This demo CSS contains ONLY what's absolutely essential.
+ */
 
-body {
-  font-family: 'JetBrains Mono', monospace;
-  background: #000;
-  color: #00ff41;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#root {
-  min-height: 100vh;
-}
-
-/* Terminal-specific styles */
-.theme-matrix {
-  --color-primary: #00ff41;
-  --color-secondary: #008f11;
-  --color-accent: #00ff41;
-  --color-background: #000000;
-  --color-surface: #0a0a0a;
-  --color-border: #00ff41;
-  --color-text-primary: #00ff41;
-  --color-text-secondary: #008f11;
-  --color-text-muted: #004d0a;
-  --color-glow: #00ff41;
-  --color-shadow: rgba(0, 255, 65, 0.3);
-}
-
-.theme-tron {
-  --color-primary: #00ffff;
-  --color-secondary: #0080ff;
-  --color-accent: #ff8000;
-  --color-background: #0a0a0a;
-  --color-surface: #111111;
-  --color-border: #00ffff;
-  --color-text-primary: #00ffff;
-  --color-text-secondary: #0080ff;
-  --color-text-muted: #004d66;
-  --color-glow: #00ffff;
-  --color-shadow: rgba(0, 255, 255, 0.3);
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
-}
-
-/* Selection styling */
-::selection {
-  background: var(--color-primary);
-  color: var(--color-background);
-}
-
-/* Focus styles */
-*:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-/* Animations */
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 1;
-    filter: drop-shadow(0 0 5px currentColor);
+@layer base {
+  /* Essential viewport setup - everything else from design tokens */
+  html {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+    touch-action: manipulation;
   }
-  50% {
-    opacity: 0.8;
-    filter: drop-shadow(0 0 20px currentColor);
+
+  #root {
+    /* Design system handles all styling via CSS custom properties */
+    @apply min-h-screen bg-background text-text-primary font-terminal;
   }
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
+/* 
+ * That's it! Everything else comes from design tokens:
+ * 
+ * 🎨 Colors: tokens.colors (Matrix/TRON palettes + semantic colors)
+ * 📝 Typography: tokens.typography (font families, sizes, weights)
+ * 📏 Spacing: tokens.spacing (consistent spacing scale)
+ * 🎭 Animations: Built into Tailwind config via tokens
+ * 🖼️ Shadows: tokens.shadows (including glow effects)
+ * 📱 Responsive: tokens.breakpoints
+ * 🎯 Components: .terminal-window, .terminal-button, etc.
+ * ✨ Effects: .text-glow, .matrix-text, .tron-text, etc.
+ * 
+ * Usage examples:
+ * - bg-primary text-text-primary (semantic colors)
+ * - text-display-lg font-terminal (typography scale)
+ * - p-component-md gap-layout-sm (semantic spacing)
+ * - animate-fade-in hover-glow (animations & effects)
+ * - terminal-window matrix-text (component utilities)
+ * - shadow-glow-lg border-primary (glow effects)
+ * 
+ * The design system provides everything needed to build
+ * terminal-style interfaces with Tailwind CSS utilities!
+ */

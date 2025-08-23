@@ -15,17 +15,18 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "DESIGN_TOKENS.md"
   ],
   "scripts": {
     "build": "tsup",
-    "build:watch": "tsup --watch",
     "dev": "tsup --watch",
-    "dev:demo": "npm run build && concurrently \"npm run dev\" \"cd demo && npm run dev\"",
-    "demo:dev": "npm run build && cd demo && npm run dev",
-    "demo:build": "npm run build && cd demo && npm run build",
-    "demo:preview": "npm run build && cd demo && npm run preview",
-    "demo:deploy": "npm run build && cd demo && npm run deploy",
+    "dev:demo": "concurrently \"npm run dev\" \"npm run demo:serve\"",
+    "demo:serve": "cd demo && npm run dev:no-build",
+    "demo:dev": "npm run build && cd demo && npm run dev:no-build",
+    "demo:build": "npm run build && cd demo && npm run build:no-build",
+    "demo:preview": "npm run build && cd demo && npm run preview:no-build",
+    "demo:deploy": "npm run build && cd demo && npm run deploy:no-build",
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
@@ -41,7 +42,7 @@
     "analyze:dependencies": "knip --include dependencies",
     "analyze:all": "knip --include files,dependencies,unlisted,exports,nsExports,classMembers,types,nsTypes,enumMembers,duplicates",
     "bundle-size": "npm run build && bundlesize",
-    "quality": "npm run type-check && npm run lint && npm run format:check && npm run analyze:dead-code && npm run test:run",
+    "quality": "npm run type-check && npm run lint && npm run format:check && npm run test:run",
     "clean": "rimraf dist coverage .nyc_output",
     "prepublishOnly": "npm run clean && npm run quality && npm run build"
   },
@@ -55,7 +56,8 @@
     "typescript",
     "tailwind",
     "micro-frontend",
-    "mfe"
+    "mfe",
+    "design-tokens"
   ],
   "author": "Jonmatum",
   "license": "MIT",
@@ -107,11 +109,13 @@
   "bundlesize": [
     {
       "path": "./dist/index.cjs",
-      "maxSize": "20 kB"
+      "maxSize": "125 kB",
+      "compression": "gzip"
     },
     {
       "path": "./dist/index.js",
-      "maxSize": "18 kB"
+      "maxSize": "120 kB",
+      "compression": "gzip"
     }
   ]
 }

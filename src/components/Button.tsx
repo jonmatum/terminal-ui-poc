@@ -8,6 +8,10 @@ export interface ButtonProps
   size?: 'sm' | 'md' | 'lg';
   loading?: boolean;
   children: React.ReactNode;
+  /** Enable hover scale animation */
+  animate?: boolean;
+  /** Custom sound effect callback */
+  onSound?: () => void;
 }
 
 const sizeClasses = {
@@ -25,20 +29,33 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       loading,
       disabled,
       children,
+      animate = true,
+      onSound,
+      onClick,
       ...props
     },
     ref
   ) => {
     const { variants } = useTheme();
 
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (!disabled && !loading) {
+        onSound?.();
+        onClick?.(e);
+      }
+    };
+
     return (
       <button
         className={cn(
           // Base styles
-          'inline-flex items-center justify-center rounded-md font-mono font-medium',
+          'inline-flex items-center justify-center rounded-xl font-mono font-semibold',
           'focus-visible:ring-2 focus-visible:ring-current focus-visible:outline-none',
           'disabled:pointer-events-none disabled:opacity-50',
-          'relative overflow-hidden',
+          'relative overflow-hidden transition-all duration-200',
+
+          // Animation styles
+          animate && 'hover:scale-[1.02] active:scale-[0.98]',
 
           // Size styles
           sizeClasses[size],
@@ -50,6 +67,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         disabled={disabled || loading}
         ref={ref}
+        onClick={handleClick}
         {...props}
       >
         {loading && (
