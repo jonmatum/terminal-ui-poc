@@ -14,7 +14,7 @@ export const Text = forwardRef<HTMLElement, TextProps>(
 
     return (
       <Component
-        ref={ref}
+        ref={ref as any}
         className={cn(
           variants.text[variant],
           className
