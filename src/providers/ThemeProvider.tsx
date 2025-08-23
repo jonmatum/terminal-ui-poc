@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import type { ThemeMode, ThemeConfig, ThemeContextValue } from '../types/theme';
+import type { ThemeMode, ThemeContextValue } from '../types/theme';
 import { themes, createComponentVariants } from '../utils/theme-config';
 import { useKonami } from '../hooks/useKonami';
 

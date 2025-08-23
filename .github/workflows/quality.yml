@@ -1,0 +1,68 @@
+name: Quality Checks
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18, 20]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Type checking
+        run: npm run type-check
+        
+      - name: Linting
+        run: npm run lint
+        
+      - name: Format checking
+        run: npm run format:check
+        
+      - name: Dead code analysis
+        run: npm run analyze:dead-code
+        
+      - name: Run tests
+        run: npm run test:coverage
+        
+      - name: Build package
+        run: npm run build
+        
+      - name: Bundle size check
+        run: npm run bundle-size
+        
+      - name: Upload coverage reports
+        if: matrix.node-version == 20
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          
+      - name: Quality gate summary
+        run: |
+          echo "## Quality Gate Results" >> $GITHUB_STEP_SUMMARY
+          echo "✅ TypeScript compilation passed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ ESLint checks passed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Prettier formatting passed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Dead code analysis passed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Test suite passed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Build successful" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Bundle size within limits" >> $GITHUB_STEP_SUMMARY
