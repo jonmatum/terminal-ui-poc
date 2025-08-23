@@ -10,6 +10,7 @@ A terminal-style design system with Matrix/TRON themes and Konami code integrati
 - **TypeScript First**: Full type safety and IntelliSense support
 - **Tailwind CSS**: Utility-first styling with custom theme integration
 - **Micro-Frontend Ready**: Perfect for app shell architectures
+- **Fast Builds**: Powered by tsup and esbuild for lightning-fast compilation
 
 ## Installation
 
@@ -25,6 +26,7 @@ pnpm add @jonmatum/terminal-ui
 
 ```tsx
 import { ThemeProvider, Button, Card, CardHeader, CardTitle, CardContent } from '@jonmatum/terminal-ui';
+import '@jonmatum/terminal-ui/styles';
 
 function App() {
   return (
@@ -167,7 +169,7 @@ function MyComponent() {
 # Install dependencies
 npm install
 
-# Build the package
+# Build the package (fast with tsup + esbuild)
 npm run build
 
 # Watch mode for development
@@ -182,6 +184,16 @@ npm run lint
 # Testing
 npm run test
 ```
+
+## Build System
+
+This package uses **tsup** for blazing-fast builds:
+
+- **Zero Configuration**: Works out of the box
+- **esbuild Powered**: Extremely fast compilation
+- **Multiple Formats**: Automatic CJS and ESM outputs
+- **Type Definitions**: Automatic .d.ts generation
+- **CSS Injection**: Styles bundled automatically
 
 ## Styling
 

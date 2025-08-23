@@ -3,16 +3,24 @@
   "version": "1.0.0",
   "description": "Terminal-style design system with Matrix/TRON themes and Konami code integration",
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/index.css"
+  },
   "files": [
     "dist",
     "README.md"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "build:watch": "rollup -c -w",
-    "dev": "npm run build:watch",
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "dev": "tsup --watch",
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
@@ -45,9 +53,6 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^28.0.1",
-    "@rollup/plugin-node-resolve": "^16.0.0",
-    "@rollup/plugin-typescript": "^12.1.1",
     "@testing-library/jest-dom": "^6.7.0",
     "@testing-library/react": "^16.3.0",
     "@types/react": "^18.3.17",
@@ -64,9 +69,8 @@
     "jsdom": "^26.1.0",
     "postcss": "^8.5.1",
     "rimraf": "^6.0.1",
-    "rollup": "^4.28.1",
-    "rollup-plugin-postcss": "^4.0.2",
     "tailwindcss": "^4.1.12",
+    "tsup": "^8.3.5",
     "typescript": "^5.7.2",
     "vite": "^6.3.5",
     "vitest": "^3.2.4"
