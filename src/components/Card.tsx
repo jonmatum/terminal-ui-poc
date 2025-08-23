@@ -14,11 +14,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     return (
       <div
         ref={ref}
-        className={cn(
-          'rounded-lg p-6',
-          variants.card[variant],
-          className
-        )}
+        className={cn('rounded-lg p-6', variants.card[variant], className)}
         {...props}
       >
         {children}
@@ -49,19 +45,20 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
 
 CardHeader.displayName = 'CardHeader';
 
-export interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+export interface CardTitleProps
+  extends React.HTMLAttributes<HTMLHeadingElement> {
   children: React.ReactNode;
 }
 
 export const CardTitle = forwardRef<HTMLParagraphElement, CardTitleProps>(
   ({ className, children, ...props }, ref) => {
     const { variants } = useTheme();
-    
+
     return (
       <h3
         ref={ref}
         className={cn(
-          'text-2xl font-semibold leading-none tracking-tight',
+          'text-2xl leading-none font-semibold tracking-tight',
           variants.text.accent,
           className
         )}
@@ -75,25 +72,23 @@ export const CardTitle = forwardRef<HTMLParagraphElement, CardTitleProps>(
 
 CardTitle.displayName = 'CardTitle';
 
-export interface CardDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {
+export interface CardDescriptionProps
+  extends React.HTMLAttributes<HTMLParagraphElement> {
   children: React.ReactNode;
 }
 
-export const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
-  ({ className, children, ...props }, ref) => {
-    const { variants } = useTheme();
-    
-    return (
-      <p
-        ref={ref}
-        className={cn(variants.text.secondary, className)}
-        {...props}
-      >
-        {children}
-      </p>
-    );
-  }
-);
+export const CardDescription = forwardRef<
+  HTMLParagraphElement,
+  CardDescriptionProps
+>(({ className, children, ...props }, ref) => {
+  const { variants } = useTheme();
+
+  return (
+    <p ref={ref} className={cn(variants.text.secondary, className)} {...props}>
+      {children}
+    </p>
+  );
+});
 
 CardDescription.displayName = 'CardDescription';
 

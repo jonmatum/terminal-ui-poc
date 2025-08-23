@@ -6,7 +6,9 @@ describe('cn utility', () => {
   });
 
   it('handles conditional classes', () => {
-    expect(cn('base', true && 'conditional', false && 'hidden')).toBe('base conditional');
+    expect(cn('base', true && 'conditional', false && 'hidden')).toBe(
+      'base conditional'
+    );
   });
 
   it('handles Tailwind conflicts correctly', () => {
@@ -18,11 +20,13 @@ describe('cn utility', () => {
   });
 
   it('handles objects with boolean values', () => {
-    expect(cn({
-      'class1': true,
-      'class2': false,
-      'class3': true,
-    })).toBe('class1 class3');
+    expect(
+      cn({
+        class1: true,
+        class2: false,
+        class3: true,
+      })
+    ).toBe('class1 class3');
   });
 
   it('handles undefined and null values', () => {
@@ -37,9 +41,8 @@ describe('cn utility', () => {
   });
 
   it('handles complex Tailwind merge scenarios', () => {
-    expect(cn(
-      'bg-red-500 text-white p-4',
-      'bg-blue-500 p-2'
-    )).toBe('text-white bg-blue-500 p-2');
+    expect(cn('bg-red-500 text-white p-4', 'bg-blue-500 p-2')).toBe(
+      'text-white bg-blue-500 p-2'
+    );
   });
 });

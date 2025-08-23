@@ -2,6 +2,12 @@
 
 A terminal-style design system with Matrix/TRON themes and Konami code integration. Built for modern React applications with TypeScript support.
 
+## 🚀 Live Demo
+
+**[View Interactive Demo →](https://jonmatum.github.io/terminal-ui)**
+
+Experience all components, themes, and the Konami code integration in action!
+
 ## Features
 
 - **Dual Theme System**: Matrix (green) and TRON (cyan) themes
@@ -26,12 +32,11 @@ pnpm add @jonmatum/terminal-ui
 
 ```tsx
 import { ThemeProvider, Button, Card, CardHeader, CardTitle, CardContent } from '@jonmatum/terminal-ui';
-import '@jonmatum/terminal-ui/styles';
 
 function App() {
   return (
     <ThemeProvider defaultTheme="matrix" enableKonami>
-      <div className="min-h-screen bg-background text-primary p-8">
+      <div className="min-h-screen bg-black text-current p-8">
         <Card>
           <CardHeader>
             <CardTitle>Terminal UI Demo</CardTitle>
@@ -47,9 +52,23 @@ function App() {
 }
 ```
 
-## Demo
+## Demo Development
 
-Open `demo.html` in your browser to see the components in action with live theme switching and Konami code functionality.
+The demo application showcases all components and features:
+
+```bash
+# Start demo development server
+npm run demo:dev
+
+# Build demo for production
+npm run demo:build
+
+# Preview demo build
+npm run demo:preview
+
+# Deploy demo to GitHub Pages
+npm run demo:deploy
+```
 
 ## Components
 
@@ -183,6 +202,9 @@ npm run lint
 
 # Testing
 npm run test
+
+# Full quality check
+npm run quality
 ```
 
 ## Build System

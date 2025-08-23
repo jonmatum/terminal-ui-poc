@@ -8,10 +8,7 @@ interface CustomRenderOptions extends Omit<RenderOptions, 'wrapper'> {
   enableKonami?: boolean;
 }
 
-const customRender = (
-  ui: ReactElement,
-  options: CustomRenderOptions = {}
-) => {
+const customRender = (ui: ReactElement, options: CustomRenderOptions = {}) => {
   const { theme = 'matrix', enableKonami = false, ...renderOptions } = options;
 
   const AllTheProviders = ({ children }: { children: React.ReactNode }) => {

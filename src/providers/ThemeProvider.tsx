@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from 'react';
 import type { ThemeMode, ThemeContextValue } from '../types/theme';
 import { themes, createComponentVariants } from '../utils/theme-config';
 import { useKonami } from '../hooks/useKonami';
@@ -29,10 +35,12 @@ export function ThemeProvider({
   });
 
   const { isActive: isKonamiMode } = useKonami({
-    onActivate: enableKonami ? () => {
-      const newMode = mode === 'matrix' ? 'tron' : 'matrix';
-      setMode(newMode);
-    } : undefined,
+    onActivate: enableKonami
+      ? () => {
+          const newMode = mode === 'matrix' ? 'tron' : 'matrix';
+          setMode(newMode);
+        }
+      : undefined,
   });
 
   const theme = themes[mode];
@@ -70,7 +78,7 @@ export function ThemeProvider({
     root.style.setProperty('--color-text-muted', colors.text.muted);
     root.style.setProperty('--color-glow', colors.glow);
     root.style.setProperty('--color-shadow', colors.shadow);
-    
+
     root.style.setProperty('--animation-duration', theme.animations.duration);
     root.style.setProperty('--animation-easing', theme.animations.easing);
 
@@ -88,9 +96,7 @@ export function ThemeProvider({
   };
 
   return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 }
 

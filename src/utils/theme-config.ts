@@ -56,7 +56,9 @@ export const tronTheme: ThemeConfig = {
   },
 };
 
-export const createComponentVariants = (theme: ThemeConfig): ComponentVariants => ({
+export const createComponentVariants = (
+  theme: ThemeConfig
+): ComponentVariants => ({
   button: {
     primary: `
       bg-transparent border-2 border-current text-current

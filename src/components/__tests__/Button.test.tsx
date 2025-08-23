@@ -45,7 +45,7 @@ describe('Button', () => {
   it('shows loading state correctly', () => {
     render(<Button loading>Loading Button</Button>);
     const button = screen.getByRole('button');
-    
+
     expect(button).toBeDisabled();
     expect(button.querySelector('.animate-spin')).toBeInTheDocument();
     expect(button.textContent).toContain('Loading Button');
@@ -61,30 +61,38 @@ describe('Button', () => {
   it('handles click events', () => {
     const handleClick = vi.fn();
     render(<Button onClick={handleClick}>Clickable</Button>);
-    
+
     const button = screen.getByRole('button');
     fireEvent.click(button);
-    
+
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
   it('does not trigger click when disabled', () => {
     const handleClick = vi.fn();
-    render(<Button disabled onClick={handleClick}>Disabled</Button>);
-    
+    render(
+      <Button disabled onClick={handleClick}>
+        Disabled
+      </Button>
+    );
+
     const button = screen.getByRole('button');
     fireEvent.click(button);
-    
+
     expect(handleClick).not.toHaveBeenCalled();
   });
 
   it('does not trigger click when loading', () => {
     const handleClick = vi.fn();
-    render(<Button loading onClick={handleClick}>Loading</Button>);
-    
+    render(
+      <Button loading onClick={handleClick}>
+        Loading
+      </Button>
+    );
+
     const button = screen.getByRole('button');
     fireEvent.click(button);
-    
+
     expect(handleClick).not.toHaveBeenCalled();
   });
 
@@ -101,7 +109,9 @@ describe('Button', () => {
   });
 
   it('works with different themes', () => {
-    const { rerender } = render(<Button>Matrix Button</Button>, { theme: 'matrix' });
+    const { rerender } = render(<Button>Matrix Button</Button>, {
+      theme: 'matrix',
+    });
     let button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
 

@@ -2,7 +2,8 @@ import React, { forwardRef } from 'react';
 import { cn } from '../utils/cn';
 import { useTheme } from '../providers/ThemeProvider';
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
   label?: string;
   helper?: string;
@@ -15,7 +16,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="space-y-2">
         {label && (
-          <label className={cn('block text-sm font-medium', variants.text.primary)}>
+          <label
+            className={cn('block text-sm font-medium', variants.text.primary)}
+          >
             {label}
           </label>
         )}
@@ -32,7 +35,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {helper && (
-          <p className={cn('text-sm', error ? 'text-red-500' : variants.text.muted)}>
+          <p
+            className={cn(
+              'text-sm',
+              error ? 'text-red-500' : variants.text.muted
+            )}
+          >
             {helper}
           </p>
         )}

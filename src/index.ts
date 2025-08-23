@@ -2,21 +2,21 @@
 export { Button } from './components/Button';
 export type { ButtonProps } from './components/Button';
 
-export { 
-  Card, 
-  CardHeader, 
-  CardTitle, 
-  CardDescription, 
-  CardContent, 
-  CardFooter 
+export {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
 } from './components/Card';
-export type { 
-  CardProps, 
-  CardHeaderProps, 
-  CardTitleProps, 
-  CardDescriptionProps, 
-  CardContentProps, 
-  CardFooterProps 
+export type {
+  CardProps,
+  CardHeaderProps,
+  CardTitleProps,
+  CardDescriptionProps,
+  CardContentProps,
+  CardFooterProps,
 } from './components/Card';
 
 export { Input } from './components/Input';
@@ -34,14 +34,19 @@ export { useKonami } from './hooks/useKonami';
 export type { UseKonamiOptions } from './hooks/useKonami';
 
 // Types
-export type { 
-  ThemeMode, 
-  ThemeColors, 
-  ThemeConfig, 
-  ComponentVariants, 
-  ThemeContextValue 
+export type {
+  ThemeMode,
+  ThemeColors,
+  ThemeConfig,
+  ComponentVariants,
+  ThemeContextValue,
 } from './types/theme';
 
 // Utils
 export { cn } from './utils/cn';
-export { themes, matrixTheme, tronTheme, createComponentVariants } from './utils/theme-config';
+export {
+  themes,
+  matrixTheme,
+  tronTheme,
+  createComponentVariants,
+} from './utils/theme-config';

@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 const KONAMI_CODE = [
   'ArrowUp',
-  'ArrowUp', 
+  'ArrowUp',
   'ArrowDown',
   'ArrowDown',
   'ArrowLeft',
@@ -10,7 +10,7 @@ const KONAMI_CODE = [
   'ArrowLeft',
   'ArrowRight',
   'KeyB',
-  'KeyA'
+  'KeyA',
 ];
 
 export interface UseKonamiOptions {
@@ -38,36 +38,41 @@ export function useKonami(options: UseKonamiOptions = {}) {
     );
   }, []);
 
-  const handleKeyPress = useCallback((event: KeyboardEvent) => {
-    // Ignore if user is typing in an input
-    if (event.target instanceof HTMLInputElement || 
-        event.target instanceof HTMLTextAreaElement) {
-      return;
-    }
-
-    setSequence(prev => {
-      const newSequence = [...prev, event.code];
-      
-      if (!checkSequence(newSequence)) {
-        return [];
+  const handleKeyPress = useCallback(
+    (event: KeyboardEvent) => {
+      // Ignore if user is typing in an input
+      if (
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLTextAreaElement
+      ) {
+        return;
       }
 
-      if (newSequence.length === KONAMI_CODE.length) {
-        setIsActive(current => {
-          const newActive = !current;
-          if (newActive) {
-            onActivate?.();
-          } else {
-            onDeactivate?.();
-          }
-          return newActive;
-        });
-        return [];
-      }
+      setSequence(prev => {
+        const newSequence = [...prev, event.code];
 
-      return newSequence;
-    });
-  }, [checkSequence, onActivate, onDeactivate]);
+        if (!checkSequence(newSequence)) {
+          return [];
+        }
+
+        if (newSequence.length === KONAMI_CODE.length) {
+          setIsActive(current => {
+            const newActive = !current;
+            if (newActive) {
+              onActivate?.();
+            } else {
+              onDeactivate?.();
+            }
+            return newActive;
+          });
+          return [];
+        }
+
+        return newSequence;
+      });
+    },
+    [checkSequence, onActivate, onDeactivate]
+  );
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyPress);
